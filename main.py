@@ -15,6 +15,7 @@ def main():
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
     pygame.init()
+    pygame.joystick.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
@@ -35,6 +36,16 @@ def main():
     font = pygame.font.Font(None,36)
     score_text = font.render(f"Score: {player.score}",True,"white")
     score_text_rect = score_text.get_rect(topleft=(10,10))
+
+    ## Setup joystick
+    joystick_count = pygame.joystick.get_count()
+
+    if joystick_count == 0:
+        print("No joystick detected!")
+    else:
+        joystick = pygame.joystick.Joystick(0)
+        joystick.init()
+        print(f"Detected joystick: {joystick.get_name()}")
 
     while True:
         for event in pygame.event.get():
