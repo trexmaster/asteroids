@@ -17,3 +17,4 @@ You've done all the required steps, but if you'd like to make the project your o
 * Add a shield power-up
 * Add a speed power-up
 * Add bombs that can be dropped
+* Implement joystick/pad support

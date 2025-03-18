@@ -31,6 +31,11 @@ def main():
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
     asteroid_field = AsteroidField()
 
+    ## Setup score display
+    font = pygame.font.Font(None,36)
+    score_text = font.render(f"Score: {player.score}",True,"white")
+    score_text_rect = score_text.get_rect(topleft=(10,10))
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -42,12 +47,16 @@ def main():
             for s in shots:
                 if s.colliding(a):
                     s.kill()
-                    a.split()
+                    player.score += a.split()
+                    score_text = font.render(f"Score: {player.score}",True,"white")
             if a.colliding(player):
                 print("Game over!")
                 sys.exit(1)
 
         screen.fill("black")
+
+        # "Bake in score display"
+        screen.blit(score_text,score_text_rect)
 
         for obj in drawable:
             obj.draw(screen)
