@@ -32,6 +32,9 @@ def main():
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
     asteroid_field = AsteroidField()
 
+    # Load background image
+    bg = pygame.image.load("assets/galaxy_stars_light_61697_1280x720.jpg")
+
     ## Setup score display
     font = pygame.font.Font(None,36)
     score_text = font.render(f"Score: {player.score}",True,"white")
@@ -66,7 +69,9 @@ def main():
 
         screen.fill("black")
 
-        # "Bake in score display"
+        # "Bake in" background image
+        screen.blit(bg, (0,0))
+        # "Bake in" score display
         screen.blit(score_text,score_text_rect)
 
         for obj in drawable:
